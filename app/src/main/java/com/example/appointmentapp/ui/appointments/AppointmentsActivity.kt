@@ -14,11 +14,9 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
 
     override fun onStart() {
         super.onStart()
-        AppointmentsPresenter.attachScreen(this)
     }
 
     override fun onStop() {
-        AppointmentsPresenter.detachScreen()
         super.onStop()
     }
 
