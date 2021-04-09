@@ -1,12 +1,11 @@
-package com.example.appointmentapp.ui.appointments
+package com.example.appointmentapp.ui.newappointment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.appointmentapp.R
 import com.example.appointmentapp.model.Appointment
-import hu.bme.aut.weatherdemo.ui.weather.AppointmentPresenter
 
-class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
+class NewAppointmentActivity : AppCompatActivity(), NewAppointmentScreen {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,11 +13,11 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
 
     override fun onStart() {
         super.onStart()
-        AppointmentsPresenter.attachScreen(this)
+        NewAppointmentPresenter.attachScreen(this)
     }
 
     override fun onStop() {
-        AppointmentsPresenter.detachScreen()
+        NewAppointmentPresenter.detachScreen()
         super.onStop()
     }
 
@@ -26,7 +25,7 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
         super.onResume()
     }
 
-    override fun showAppointments(citiesList: List<Appointment>) {
-        TODO("Not yet implemented")
-    }
+    override fun saveAppointment() {}
+
+    override fun showError(errorMsg: String) {}
 }
