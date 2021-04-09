@@ -1,5 +1,5 @@
 package com.example.appointmentapp.network
 
-interface AppointmentAPI {
+interface AppointmentsAPI {
     fun getAppointments()
 }
