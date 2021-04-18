@@ -1,13 +1,19 @@
 package com.example.appointmentapp.model
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
 
+@Entity(tableName = "appointment")
 data class Appointment (
-    @SerializedName("_links")
+    @SerializedName("links")
+    @Ignore
     var links: AppointmentLinks? = null,
 
     @SerializedName("id")
+    @PrimaryKey
     var id: String? = null,
 
     @SerializedName("title")
