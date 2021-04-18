@@ -9,6 +9,6 @@ data class GoogleResponse (
     @SerializedName("token")
     var token: String? = null,
 
-    @SerializedName("_links")
+    @SerializedName("links")
     var links: GoogleLinks? = null
 )

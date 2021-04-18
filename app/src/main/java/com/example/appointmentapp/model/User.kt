@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class User (
-    @SerializedName("_links")
+    @SerializedName("links")
     var links: UserLinks? = null,
 
     @SerializedName("userId")
