@@ -1,54 +1,54 @@
 package com.example.appointmentapp.network
 
 import com.example.appointmentapp.model.*
+import retrofit2.Call
 import retrofit2.http.*
-import rx.Observable
 
 interface AppointmentsAPI {
 
     @DELETE("appointments/{id}")
     fun deleteAppointmentsId(
             @retrofit2.http.Path("id") id: String?
-    ): Observable<DeleteResponse?>?
+    ): Call<DeleteResponse?>?
 
     @get:GET("appointments")
-    val appointments: Observable<AppointmentsResponse?>?
+    val appointments: Call<AppointmentsResponse?>?
 
     @GET("appointments/{id}")
     fun getAppointmentsId(
             @retrofit2.http.Path("id") id: String?
-    ): Observable<Appointment?>?
+    ): Call<Appointment?>?
 
     @get:GET("auth/google")
-    val authGoogle: Observable<Any?>?
+    val authGoogle: Call<Any?>?
 
     @get:GET("me")
-    val me: Observable<User?>?
+    val me: Call<User?>?
 
     @get:GET("auth/loggedin")
-    val user: Observable<Any?>?
+    val user: Call<Any?>?
 
     @Headers("Content-Type:application/json")
     @PATCH("appointments/{id}")
     fun patchAppointmentsId(
             @retrofit2.http.Path("id") id: String?, @retrofit2.http.Body body: AppointmentBody?
-    ): Observable<Appointment?>?
+    ): Call<Appointment?>?
 
     @Headers("Content-Type:application/json")
     @POST("appointments")
     fun postAppointments(
             @retrofit2.http.Body body: AppointmentBody?
-    ): Observable<Appointment?>?
+    ): Call<Appointment?>?
 
     @Headers("Content-Type:application/json")
     @POST("auth/google")
     fun postAuthGoogle(
             @retrofit2.http.Body body: Token?
-    ): Observable<GoogleResponse?>?
+    ): Call<GoogleResponse?>?
 
     @Headers("Content-Type:application/json")
     @PUT("appointments/{id}")
     fun putAppointmentsId(
             @retrofit2.http.Path("id") id: String?, @retrofit2.http.Body body: AppointmentBody?
-    ): Observable<Appointment?>?
+    ): Call<Appointment?>?
 }
