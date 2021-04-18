@@ -1,5 +1,6 @@
 package com.example.appointmentapp.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -20,9 +21,11 @@ data class Appointment (
     var title: String? = null,
 
     @SerializedName("dateAndTime")
+    @ColumnInfo(name = "dateandtime")
     var dateAndTime: String? = null,
 
     @SerializedName("endDateAndTime")
+    @ColumnInfo(name = "enddateandtime")
     var endDateAndTime: String? = null,
 
     @SerializedName("duration")
