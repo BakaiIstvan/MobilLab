@@ -1,10 +1,20 @@
 package com.example.appointmentapp.ui.appointments
 
+import android.content.Intent
+import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.appointmentapp.R
+import com.example.appointmentapp.injector
 import com.example.appointmentapp.model.Appointment
-import hu.bme.aut.weatherdemo.ui.weather.AppointmentPresenter
+import com.example.appointmentapp.ui.about.AboutActivity
+import com.example.appointmentapp.ui.newappointment.NewAppointmentActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.tabs.TabItem
+import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_appointments.*
+import java.util.concurrent.Executor
 import javax.inject.Inject
 
 class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
@@ -14,8 +24,28 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //injector.inject(this)
         setContentView(R.layout.activity_appointments)
         setTitle("Appointments")
+        findViewById<FloatingActionButton>(R.id.add_btn).setOnClickListener { view ->
+            val intent = Intent(this, NewAppointmentActivity::class.java)
+            // intent.putExtra("Appointment_ID", appoitment.appointmenttitle)
+            this.startActivity(intent)
+        }
+
+        findViewById<TabLayout>(R.id.navigation_tablayout).addOnTabSelectedListener((object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when (tab.text) {
+                    "About" -> navigationToAbout()
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        }))
     }
 
     override fun onStart() {
@@ -32,5 +62,10 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
 
     override fun showAppointments(citiesList: List<Appointment>) {
         TODO("Not yet implemented")
+    }
+
+    fun navigationToAbout() {
+        val intent = Intent(this, AboutActivity::class.java)
+        this.startActivity(intent)
     }
 }

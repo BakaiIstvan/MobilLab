@@ -1,4 +1,4 @@
-package hu.bme.aut.weatherdemo.ui.weather
+package com.example.appointmentapp.ui.appointment
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,7 @@ import com.example.appointmentapp.model.Appointment
 class AppointmentDetailsActivity : AppCompatActivity(), AppointmentScreen {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_appointments)
+        setContentView(R.layout.activity_appointment)
     }
 
     override fun onStart() {
