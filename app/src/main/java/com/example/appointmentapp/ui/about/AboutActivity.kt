@@ -9,6 +9,6 @@ import hu.bme.aut.weatherdemo.ui.weather.AppointmentPresenter
 class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_appointments)
     }
 }

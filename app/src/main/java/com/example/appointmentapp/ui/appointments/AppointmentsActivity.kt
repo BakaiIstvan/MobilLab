@@ -5,11 +5,17 @@ import android.os.Bundle
 import com.example.appointmentapp.R
 import com.example.appointmentapp.model.Appointment
 import hu.bme.aut.weatherdemo.ui.weather.AppointmentPresenter
+import javax.inject.Inject
 
 class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
+
+    @Inject
+    lateinit var appointmentsPresenter: AppointmentsPresenter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_appointments)
+        setTitle("Appointments")
     }
 
     override fun onStart() {
