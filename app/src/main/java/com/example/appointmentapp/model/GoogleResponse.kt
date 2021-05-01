@@ -7,7 +7,7 @@ data class GoogleResponse (
     var message: String? = null,
 
     @SerializedName("token")
-    var token: String? = null,
+    var token: String,
 
     @SerializedName("links")
     var links: GoogleLinks? = null

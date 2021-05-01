@@ -49,8 +49,8 @@ interface AppointmentsAPI {
     @Headers("Content-Type:application/json")
     @POST("auth/google")
     fun postAuthGoogle(
-            @retrofit2.http.Body body: Token?
-    ): Call<GoogleResponse?>?
+            @retrofit2.http.Body body: Token
+    ): Call<GoogleResponse>
 
     @Headers("Content-Type:application/json")
     @PUT("appointments/{id}")

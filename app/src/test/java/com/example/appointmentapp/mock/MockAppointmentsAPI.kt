@@ -120,7 +120,7 @@ class MockAppointmentsAPI() : AppointmentsAPI{
         TODO("Not yet implemented")
     }
 
-    override fun postAuthGoogle(body: Token?): Call<GoogleResponse?>? {
+    override fun postAuthGoogle(body: Token): Call<GoogleResponse> {
         TODO("Not yet implemented")
     }
 
