@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.appointmentapp.interactor.appointments.event.DeleteAppointmentEvent
 import com.example.appointmentapp.interactor.appointments.event.GetAppointmentEvent
 import com.example.appointmentapp.interactor.appointments.event.GetAppointmentsEvent
+import com.example.appointmentapp.model.AppointmentBody
 import com.example.appointmentapp.model.Token
 import com.example.appointmentapp.network.AppointmentsAPI
 import com.example.appointmentapp.network.NetworkConfig
@@ -79,6 +80,31 @@ class AppointmentsInteractor @Inject constructor(private var appointmentsApi: Ap
 
                 event.code = response.code()
                 event.id = id
+            }
+            EventBus.getDefault().post(event)
+        } catch (e: Exception) {
+            event.throwable = e
+            EventBus.getDefault().post(event)
+        }
+    }
+
+    fun modifyAppointment(id: String, appointmentBody: AppointmentBody) {
+        val token = getAuthorizationToken()
+        val event = GetAppointmentEvent()
+
+        try {
+            val appointmentsQueryCall = appointmentsApi.patchAppointmentsId(token, id, appointmentBody)
+
+            val response = appointmentsQueryCall?.execute()
+            if (response != null) {
+                Log.d("Reponse", response.body().toString())
+
+                if (response.code() != 200) {
+                    throw Exception("Result code is not 200")
+                }
+
+                event.code = response.code()
+                event.appointment = response.body()
             }
             EventBus.getDefault().post(event)
         } catch (e: Exception) {

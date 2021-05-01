@@ -14,7 +14,6 @@ data class AppointmentBody (
     @SerializedName("endDateAndTime")
     var endDateAndTime: String? = null,
 
-
     @SerializedName("duration")
     var duration: BigDecimal? = null,
 
