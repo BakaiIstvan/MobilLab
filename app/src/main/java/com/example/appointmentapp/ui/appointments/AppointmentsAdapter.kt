@@ -10,9 +10,9 @@ import com.example.appointmentapp.R
 import com.example.appointmentapp.model.Appointment
 import kotlinx.android.synthetic.main.appointment_card.view.*
 
-class RecyclerAdapter constructor(
+class AppointmentsAdapter constructor(
         private val context: Context,
-        private var appointments: List<Appointment>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+        private var appointments: List<Appointment>) : RecyclerView.Adapter<AppointmentsAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

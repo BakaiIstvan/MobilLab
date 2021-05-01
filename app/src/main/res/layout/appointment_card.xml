@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="8dp"
     android:id="@+id/appointment_card"
     app:cardCornerRadius="12dp"
     app:cardElevation="3dp"
@@ -27,14 +29,14 @@
             android:id="@+id/appointment_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/appointment_title" />
+            android:layout_below="@id/appointment_delete_btn" />
 
         <TextView
             android:id="@+id/appointment_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_below="@id/appointment_title"
+            android:layout_below="@id/appointment_edit_btn"
             android:layout_toRightOf="@id/appointment_start" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

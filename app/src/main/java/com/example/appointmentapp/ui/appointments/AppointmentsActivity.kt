@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appointmentapp.R
 import com.example.appointmentapp.injector
 import com.example.appointmentapp.model.Appointment
@@ -20,14 +21,21 @@ import javax.inject.Inject
 
 class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
 
+    private val displayedAppointments: MutableList<Appointment> = mutableListOf()
+    private var appointmentsAdapter: AppointmentsAdapter? = null
+
     @Inject
     lateinit var appointmentsPresenter: AppointmentsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //injector.inject(this)
+        injector.inject(this)
         setContentView(R.layout.activity_appointments)
         setTitle("Appointments")
+
+        appointmentsAdapter = AppointmentsAdapter(this, displayedAppointments)
+        appointments_rv.adapter = appointmentsAdapter
+
         findViewById<FloatingActionButton>(R.id.add_btn).setOnClickListener { view ->
             val intent = Intent(this, NewAppointmentActivity::class.java)
             // intent.putExtra("Appointment_ID", appoitment.appointmenttitle)
@@ -51,18 +59,23 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
 
     override fun onStart() {
         super.onStart()
+        appointmentsPresenter.attachScreen(this)
     }
 
     override fun onStop() {
         super.onStop()
+        appointmentsPresenter.detachScreen()
     }
 
     override fun onResume() {
         super.onResume()
+        appointmentsPresenter.refreshAppointments()
     }
 
-    override fun showAppointments(citiesList: List<Appointment>) {
-        TODO("Not yet implemented")
+    override fun showAppointments(appointmentsList: List<Appointment>) {
+        displayedAppointments.clear()
+        displayedAppointments.addAll(appointmentsList)
+        appointmentsAdapter?.notifyDataSetChanged()
     }
 
     override fun showNetworkError(errorMsg: String) {
