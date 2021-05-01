@@ -6,6 +6,8 @@ import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Header
+import retrofit2.http.Path
 import java.io.IOException
 import java.math.BigDecimal
 
@@ -14,10 +16,11 @@ class MockAppointmentsAPI() : AppointmentsAPI{
         TODO("Not yet implemented")
     }
 
-    override val appointments: Call<AppointmentsResponse?>?
-        get() = TODO("Not yet implemented")
+    override fun getAppointments(authorisation: String): Call<AppointmentsResponse?>? {
+        TODO("Not yet implemented")
+    }
 
-    override fun getAppointmentsId(id: String?): Call<Appointment?>? {
+    override fun getAppointmentsId(@Header(value = "Authorization") authorisation: String, @Path(value = "id") id: String?): Call<Appointment?>? {
         val appointment = Appointment(null
                                     , id
                                     , "Appointment1"
@@ -109,11 +112,11 @@ class MockAppointmentsAPI() : AppointmentsAPI{
     override val user: Call<Any?>?
         get() = TODO("Not yet implemented")
 
-    override fun patchAppointmentsId(id: String?, body: AppointmentBody?): Call<Appointment?>? {
+    override fun patchAppointmentsId(authorisation: String, id: String?, body: AppointmentBody?): Call<Appointment?>? {
         TODO("Not yet implemented")
     }
 
-    override fun postAppointments(body: AppointmentBody?): Call<Appointment?>? {
+    override fun postAppointments(authorisation: String, body: AppointmentBody?): Call<Appointment?>? {
         TODO("Not yet implemented")
     }
 
@@ -121,7 +124,7 @@ class MockAppointmentsAPI() : AppointmentsAPI{
         TODO("Not yet implemented")
     }
 
-    override fun putAppointmentsId(id: String?, body: AppointmentBody?): Call<Appointment?>? {
+    override fun putAppointmentsId(authorisation: String, id: String?, body: AppointmentBody?): Call<Appointment?>? {
         TODO("Not yet implemented")
     }
 }

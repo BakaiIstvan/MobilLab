@@ -11,11 +11,14 @@ interface AppointmentsAPI {
             @retrofit2.http.Path("id") id: String?
     ): Call<DeleteResponse?>?
 
-    @get:GET("appointments")
-    val appointments: Call<AppointmentsResponse?>?
+    @GET("appointments")
+    fun getAppointments(
+            @Header("Authorization") authorisation: String
+    ): Call<AppointmentsResponse?>?
 
     @GET("appointments/{id}")
     fun getAppointmentsId(
+            @Header("Authorization") authorisation: String,
             @retrofit2.http.Path("id") id: String?
     ): Call<Appointment?>?
 
@@ -31,12 +34,15 @@ interface AppointmentsAPI {
     @Headers("Content-Type:application/json")
     @PATCH("appointments/{id}")
     fun patchAppointmentsId(
-            @retrofit2.http.Path("id") id: String?, @retrofit2.http.Body body: AppointmentBody?
+            @Header("Authorization") authorisation: String,
+            @retrofit2.http.Path("id") id: String?,
+            @retrofit2.http.Body body: AppointmentBody?
     ): Call<Appointment?>?
 
     @Headers("Content-Type:application/json")
     @POST("appointments")
     fun postAppointments(
+            @Header("Authorization") authorisation: String,
             @retrofit2.http.Body body: AppointmentBody?
     ): Call<Appointment?>?
 
@@ -49,6 +55,8 @@ interface AppointmentsAPI {
     @Headers("Content-Type:application/json")
     @PUT("appointments/{id}")
     fun putAppointmentsId(
-            @retrofit2.http.Path("id") id: String?, @retrofit2.http.Body body: AppointmentBody?
+            @Header("Authorization") authorisation: String,
+            @retrofit2.http.Path("id") id: String?,
+            @retrofit2.http.Body body: AppointmentBody?
     ): Call<Appointment?>?
 }

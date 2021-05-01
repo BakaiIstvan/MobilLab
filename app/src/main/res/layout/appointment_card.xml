@@ -21,15 +21,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="Title" />
+            android:layout_alignParentTop="true" />
 
         <TextView
             android:id="@+id/appointment_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/appointment_title"
-            android:text="Start time" />
+            android:layout_below="@id/appointment_title" />
 
         <TextView
             android:id="@+id/appointment_end"
@@ -37,8 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_below="@id/appointment_title"
-            android:layout_toRightOf="@id/appointment_start"
-            android:text="End time" />
+            android:layout_toRightOf="@id/appointment_start" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/appointment_edit_btn"
