@@ -5,4 +5,5 @@ import com.example.appointmentapp.model.Appointment
 
 interface AppointmentsScreen {
     fun showAppointments(citiesList: List<Appointment>)
+    fun showNetworkError(errorMsg: String)
 }

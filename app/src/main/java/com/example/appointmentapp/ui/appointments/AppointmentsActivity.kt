@@ -5,6 +5,7 @@ import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.example.appointmentapp.R
 import com.example.appointmentapp.injector
 import com.example.appointmentapp.model.Appointment
@@ -62,6 +63,10 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
 
     override fun showAppointments(citiesList: List<Appointment>) {
         TODO("Not yet implemented")
+    }
+
+    override fun showNetworkError(errorMsg: String) {
+        Toast.makeText(applicationContext, errorMsg, Toast.LENGTH_LONG).show()
     }
 
     fun navigationToAbout() {
