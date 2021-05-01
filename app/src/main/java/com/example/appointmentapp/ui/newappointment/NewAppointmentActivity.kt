@@ -12,6 +12,8 @@ class NewAppointmentActivity : AppCompatActivity(), NewAppointmentScreen {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_newappointment)
+        setTitle("New appointment")
+
         findViewById<Button>(R.id.cancel_button).setOnClickListener { view ->
             val intent = Intent(this, AppointmentsActivity::class.java)
             this.startActivity(intent)

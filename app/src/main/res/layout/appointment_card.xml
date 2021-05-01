@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/appointment_card"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp"
+    app:contentPadding="4dp" >
+
+    <RelativeLayout
+        android:id="@+id/card_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" >
+
+        <TextView
+            android:id="@+id/appointment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Title"/>
+
+        <TextView
+            android:id="@+id/appointment_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:marginRight="16dp"
+            android:layout_below="@+id/appointment_title"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/appointment_end"
+            android:text="Start time"/>
+
+        <TextView
+            android:id="@+id/appointment_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/appointment_start"
+            android:layout_toEndOf="@id/appointment_start"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/appointment_title"
+            android:text="End time"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/appointment_card_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:marginRight="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_toLeftOf="@+id/appointment_card_delete"
+            android:layout_toRightOf="@id/appointment_title"
+            android:layout_toEndOf="@id/appointment_title"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/ic_edit" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/appointment_card_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/appointment_card_edit"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/ic_delete" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

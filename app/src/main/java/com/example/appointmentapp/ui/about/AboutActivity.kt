@@ -13,11 +13,11 @@ class AboutActivity : AppCompatActivity(), AboutScreen{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
+        setTitle("About")
 
         val tabLayout = findViewById<View>(R.id.navigation_tablayout) as TabLayout
         val tab = tabLayout.getTabAt(1)
         tab!!.select()
-
         tabLayout.addOnTabSelectedListener((object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.text) {

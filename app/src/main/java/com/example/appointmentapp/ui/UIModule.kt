@@ -17,7 +17,7 @@ class UIModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun mainPresenter() = AppointmentsPresenter()
+    fun appointmentsPresenter() = AppointmentsPresenter()
 
     @Provides
     @Singleton
