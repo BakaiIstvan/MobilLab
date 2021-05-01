@@ -8,6 +8,7 @@ interface AppointmentsAPI {
 
     @DELETE("appointments/{id}")
     fun deleteAppointmentsId(
+            @Header("Authorization") authorisation: String,
             @retrofit2.http.Path("id") id: String?
     ): Call<DeleteResponse?>?
 

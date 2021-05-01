@@ -12,7 +12,10 @@ import java.io.IOException
 import java.math.BigDecimal
 
 class MockAppointmentsAPI() : AppointmentsAPI{
-    override fun deleteAppointmentsId(id: String?): Call<DeleteResponse?>? {
+    override fun deleteAppointmentsId(
+        @Header(value = "Authorization") authorisation: String,
+        @Path(value = "id") id: String?
+    ): Call<DeleteResponse?>? {
         TODO("Not yet implemented")
     }
 

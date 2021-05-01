@@ -28,7 +28,7 @@
         android:tint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/navigation_tablayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:src="@drawable/ic_add" />
+        android:src="@drawable/ic_add" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/navigation_tablayout"
