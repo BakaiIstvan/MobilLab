@@ -44,11 +44,15 @@ class AppointmentsAdapter constructor(
         holder.itemEnd.text = appointment.endDateAndTime
         holder.item.setOnClickListener { view ->
             val intent = Intent(context, AppointmentDetailsActivity::class.java)
-            // intent.putExtra("Appointment_ID", appointment.appointmenttitle)
+            intent.putExtra(APPOINTMENT_ID, appointment.id)
             context.startActivity(intent)
         }
         holder.delete_btn.setOnClickListener { view ->
             appointmentsPresenter.deleteAppointment(appointment.id)
         }
+    }
+
+    companion object {
+        const val APPOINTMENT_ID = "APPOINTMENT_ID"
     }
 }

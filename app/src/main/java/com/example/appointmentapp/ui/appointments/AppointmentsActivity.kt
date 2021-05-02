@@ -70,6 +70,7 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
     override fun onResume() {
         super.onResume()
         appointmentsPresenter.refreshAppointments()
+
     }
 
     override fun showAppointments(appointmentsList: List<Appointment>) {
