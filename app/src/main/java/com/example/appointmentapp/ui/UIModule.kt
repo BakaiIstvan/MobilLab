@@ -29,7 +29,7 @@ class UIModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun newAppointmentsPresenter(executor: Executor, newAppointmentInteractor: NewAppointmentInteractor) = NewAppointmentPresenter(executor, newAppointmentInteractor)
+    fun newAppointmentPresenter(executor: Executor, newAppointmentInteractor: NewAppointmentInteractor) = NewAppointmentPresenter(executor, newAppointmentInteractor)
 
     @Provides
     @Singleton
