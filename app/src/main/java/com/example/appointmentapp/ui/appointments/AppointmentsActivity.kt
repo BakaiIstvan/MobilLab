@@ -77,7 +77,7 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
         appointmentsAdapter?.notifyDataSetChanged()
     }
 
-    override fun showAppointmentDeleted(id: String) {
+    override fun showAppointmentDeleted(id: String?) {
         Toast.makeText(applicationContext, "Appointment with ID: " + id + " was deleted", Toast.LENGTH_LONG).show()
     }
 

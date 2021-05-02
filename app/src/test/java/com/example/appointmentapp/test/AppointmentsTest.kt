@@ -38,8 +38,21 @@ class AppointmentsTest {
         assert(list.value.size > 0)
     }
 
+    @Test
+    fun testDeleteAppointment() {
+        appointmentsPresenter.deleteAppointment(DELETED_ID)
+
+        val id = argumentCaptor<String>()
+        verify(appointmentsScreen).showAppointmentDeleted(id.capture())
+        assert(id.value == DELETED_ID)
+    }
+
     @After
     fun tearDown() {
         appointmentsPresenter.detachScreen()
+    }
+
+    companion object {
+        private const val DELETED_ID = "id1"
     }
 }
