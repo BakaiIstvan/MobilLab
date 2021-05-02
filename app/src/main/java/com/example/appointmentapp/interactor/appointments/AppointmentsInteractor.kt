@@ -14,47 +14,43 @@ import javax.inject.Inject
 
 class AppointmentsInteractor @Inject constructor(private var appointmentsApi: AppointmentsAPI, private var appointmentDao : AppointmentDAO) {
     fun getAppointments() {
-        val appointments = appointmentDao.getAppointments()
         val event = GetAppointmentsEvent()
+        val token = getAuthorizationToken()
 
-        if (!appointments.isEmpty()) {
-            event.code = 200
-            event.appointments = appointments
-            EventBus.getDefault().post(event)
-        } else {
-            val token = getAuthorizationToken()
+        try {
+            val appointmentsQueryCall = appointmentsApi.getAppointments(token)
 
-            try {
-                val appointmentsQueryCall = appointmentsApi.getAppointments(token)
+            val response = appointmentsQueryCall?.execute()
+            if (response != null) {
+                Log.d("Reponse", response.body().toString())
 
-                val response = appointmentsQueryCall?.execute()
-                if (response != null) {
-                    Log.d("Reponse", response.body().toString())
+                if (response.code() != 200) {
+                    throw Exception("Result code is not 200")
+                }
 
-                    if (response.code() != 200) {
-                        throw Exception("Result code is not 200")
-                    }
+                event.code = response.code()
+                val apiAppointments = response.body()?.embedded?.appointment
+                var appointments = appointmentDao.getAppointments()
 
-                    event.code = response.code()
-                    event.appointments = response.body()?.embedded?.appointment
-                    if (event.appointments != null) {
-                        appointmentDao.insertAppointments(event.appointments as MutableList<Appointment>)
+                if (apiAppointments != null) {
+                    if (!appointments.containsAll(apiAppointments)) {
+                        appointmentDao.insertAppointments(apiAppointments)
+                        appointments = appointmentDao.getAppointments()
                     }
                 }
-                EventBus.getDefault().post(event)
-            } catch (e: Exception) {
-                event.throwable = e
-                EventBus.getDefault().post(event)
+                event.appointments = appointments
             }
+            EventBus.getDefault().post(event)
+        } catch (e: Exception) {
+            event.throwable = e
+            EventBus.getDefault().post(event)
         }
     }
 
     fun deleteAppointment(id: String) {
-        val token = getAuthorizationToken()
         val event = DeleteAppointmentEvent()
-
         val appointment = appointmentDao.getSpecificAppointment(id)
-        appointmentDao.deleteSpecificAppointment(appointment)
+        val token = getAuthorizationToken()
 
         try {
             val appointmentsQueryCall = appointmentsApi.deleteAppointmentsId(token, id)
@@ -69,6 +65,7 @@ class AppointmentsInteractor @Inject constructor(private var appointmentsApi: Ap
 
                 event.code = response.code()
                 event.id = id
+                appointmentDao.deleteSpecificAppointment(appointment)
             }
             EventBus.getDefault().post(event)
         } catch (e: Exception) {

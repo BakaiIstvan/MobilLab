@@ -5,6 +5,7 @@ import com.example.appointmentapp.data.AppointmentDAO
 import com.example.appointmentapp.interactor.appointments.event.GetAppointmentEvent
 import com.example.appointmentapp.interactor.appointments.event.SaveAppointmentEvent
 import com.example.appointmentapp.interactor.appointments.event.UpdateAppointmentEvent
+import com.example.appointmentapp.model.Appointment
 import com.example.appointmentapp.model.AppointmentBody
 import com.example.appointmentapp.model.Token
 import com.example.appointmentapp.network.AppointmentsAPI
@@ -16,7 +17,6 @@ class NewAppointmentInteractor @Inject constructor(private var appointmentsApi: 
 
     fun modifyAppointment(id: String, appointmentBody: AppointmentBody) {
         val event = UpdateAppointmentEvent()
-
         val token = getAuthorizationToken()
 
         try {
@@ -32,6 +32,13 @@ class NewAppointmentInteractor @Inject constructor(private var appointmentsApi: 
 
                 event.code = response.code()
                 event.id = response.body()?.id
+                var modifiedAppointment = appointmentDao.getSpecificAppointment(id)
+                modifiedAppointment.title = appointmentBody.title
+                modifiedAppointment.dateAndTime = appointmentBody.dateAndTime
+                modifiedAppointment.endDateAndTime = appointmentBody.endDateAndTime
+                modifiedAppointment.duration = appointmentBody.duration
+                modifiedAppointment.remarks = appointmentBody.remarks
+                appointmentDao.updateSpecificAppointment(modifiedAppointment)
             }
             EventBus.getDefault().post(event)
         } catch (e: Exception) {
@@ -90,6 +97,10 @@ class NewAppointmentInteractor @Inject constructor(private var appointmentsApi: 
 
                 event.code = response.code()
                 event.appointment = response.body()
+
+                if (event.appointment != null) {
+                    appointmentDao.insertAppointment(event.appointment!!)
+                }
             }
             EventBus.getDefault().post(event)
         } catch (e: Exception) {
