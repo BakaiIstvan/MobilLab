@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appointmentapp.R
 import com.example.appointmentapp.model.Appointment
 import com.example.appointmentapp.ui.appointment.AppointmentDetailsActivity
+import com.example.appointmentapp.ui.newappointment.NewAppointmentActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.appointment_card.view.*
 
@@ -25,6 +26,7 @@ class AppointmentsAdapter constructor(
         var itemTitle: TextView = view.appointment_title
         var itemStart: TextView = view.appointment_start
         var itemEnd: TextView = view.appointment_end
+        var edit_btn: FloatingActionButton = view.appointment_edit_btn
         var delete_btn: FloatingActionButton = view.appointment_delete_btn
     }
 
@@ -47,6 +49,13 @@ class AppointmentsAdapter constructor(
             intent.putExtra(APPOINTMENT_ID, appointment.id)
             context.startActivity(intent)
         }
+
+        holder.edit_btn.setOnClickListener { view ->
+            val intent = Intent(context, NewAppointmentActivity::class.java)
+            intent.putExtra(APPOINTMENT_ID, appointment.id)
+            context.startActivity(intent)
+        }
+
         holder.delete_btn.setOnClickListener { view ->
             appointmentsPresenter.deleteAppointment(appointment.id)
         }

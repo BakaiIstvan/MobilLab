@@ -3,6 +3,7 @@ package com.example.appointmentapp.interactor.appointments
 import android.util.Log
 import com.example.appointmentapp.interactor.appointments.event.GetAppointmentEvent
 import com.example.appointmentapp.interactor.appointments.event.SaveAppointmentEvent
+import com.example.appointmentapp.interactor.appointments.event.UpdateAppointmentEvent
 import com.example.appointmentapp.model.AppointmentBody
 import com.example.appointmentapp.model.Token
 import com.example.appointmentapp.network.AppointmentsAPI
@@ -14,7 +15,7 @@ class NewAppointmentInteractor @Inject constructor(private var appointmentsApi: 
 
     fun modifyAppointment(id: String, appointmentBody: AppointmentBody) {
         val token = getAuthorizationToken()
-        val event = GetAppointmentEvent()
+        val event = UpdateAppointmentEvent()
 
         try {
             val appointmentsQueryCall = appointmentsApi.patchAppointmentsId(token, id, appointmentBody)
@@ -28,7 +29,7 @@ class NewAppointmentInteractor @Inject constructor(private var appointmentsApi: 
                 }
 
                 event.code = response.code()
-                event.appointment = response.body()
+                event.id = response.body()?.id
             }
             EventBus.getDefault().post(event)
         } catch (e: Exception) {

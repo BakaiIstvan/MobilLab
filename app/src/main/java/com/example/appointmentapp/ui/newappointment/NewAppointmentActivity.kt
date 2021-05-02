@@ -10,6 +10,7 @@ import com.example.appointmentapp.injector
 import com.example.appointmentapp.model.Appointment
 import com.example.appointmentapp.model.AppointmentBody
 import com.example.appointmentapp.ui.appointments.AppointmentsActivity
+import com.example.appointmentapp.ui.appointments.AppointmentsAdapter
 import com.example.appointmentapp.ui.appointments.AppointmentsPresenter
 import kotlinx.android.synthetic.main.activity_newappointment.*
 import javax.inject.Inject
@@ -33,14 +34,15 @@ class NewAppointmentActivity : AppCompatActivity(), NewAppointmentScreen {
         }
 
         done_button.setOnClickListener { view ->
-            if (newAppointment != null) {
+            val appointmentBody: AppointmentBody = AppointmentBody(edit_title_card.text.toString(),
+                                                                   edit_start_card.text.toString(),
+                                                                   edit_end_card.text.toString(),
+                                                                   edit_duration_card.text.toString().toBigDecimal(),
+                                                                   edit_description_card.text.toString())
 
+            if (newAppointment != null) {
+                newAppointmentPresenter.modifyAppointment(newAppointment!!.id, appointmentBody)
             } else {
-                val appointmentBody: AppointmentBody = AppointmentBody(edit_title_card.text.toString(),
-                                                                       edit_start_card.text.toString(),
-                                                                       edit_end_card.text.toString(),
-                                                                       edit_duration_card.text.toString().toBigDecimal(),
-                                                                       edit_description_card.text.toString())
                 newAppointmentPresenter.saveAppointment(appointmentBody)
             }
 
@@ -61,14 +63,25 @@ class NewAppointmentActivity : AppCompatActivity(), NewAppointmentScreen {
 
     override fun onResume() {
         super.onResume()
+        val id = intent.getStringExtra(AppointmentsAdapter.APPOINTMENT_ID)
+        newAppointmentPresenter.loadAppointment(id)
     }
 
     override fun loadAppointment(appointment: Appointment) {
-        TODO("Not yet implemented")
+        edit_title_card.setText(appointment.title)
+        edit_start_card.setText(appointment.dateAndTime)
+        edit_end_card.setText(appointment.endDateAndTime)
+        edit_duration_card.setText(appointment.duration.toString())
+        edit_description_card.setText(appointment.remarks)
+        newAppointment = appointment
     }
 
     override fun showAppointmentSaved(id: String) {
         Toast.makeText(applicationContext, "Appointment with ID: " + id + " was saved", Toast.LENGTH_LONG).show()
+    }
+
+    override fun showAppointmentModified(id: String) {
+        Toast.makeText(applicationContext, "Appointment with ID: " + id + " was modified", Toast.LENGTH_LONG).show()
     }
 
     override fun showError(errorMsg: String) {
