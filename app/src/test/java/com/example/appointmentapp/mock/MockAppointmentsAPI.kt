@@ -25,7 +25,7 @@ class MockAppointmentsAPI() : AppointmentsAPI{
 
     override fun getAppointmentsId(@Header(value = "Authorization") authorisation: String, @Path(value = "id") id: String?): Call<Appointment?>? {
         val appointment = Appointment(null
-                                    , id
+                                    , "id1"
                                     , "Appointment1"
                                     , "2021-06-01T14:45:00.000Z"
                                     , "2021-06-01T14:45:00.000Z"
