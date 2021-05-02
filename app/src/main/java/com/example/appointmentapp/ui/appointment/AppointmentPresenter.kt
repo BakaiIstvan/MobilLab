@@ -47,5 +47,4 @@ class AppointmentPresenter @Inject constructor(private val executor: Executor, p
             }
         }
     }
-
 }
