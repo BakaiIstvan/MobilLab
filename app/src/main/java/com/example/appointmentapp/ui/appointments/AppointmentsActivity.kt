@@ -69,9 +69,11 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
         appointmentsPresenter.refreshAppointments()
     }
 
-    override fun showAppointments(appointmentsList: List<Appointment>) {
+    override fun showAppointments(appointmentsList: List<Appointment>?) {
         displayedAppointments.clear()
-        displayedAppointments.addAll(appointmentsList)
+        if (appointmentsList != null) {
+            displayedAppointments.addAll(appointmentsList)
+        }
         appointmentsAdapter?.notifyDataSetChanged()
     }
 
