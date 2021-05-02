@@ -16,11 +16,76 @@ class MockAppointmentsAPI() : AppointmentsAPI{
         @Header(value = "Authorization") authorisation: String,
         @Path(value = "id") id: String?
     ): Call<DeleteResponse?>? {
-        TODO("Not yet implemented")
+        val deleteResponse = DeleteResponse("Appointment deleted")
+        val call = object : Call<DeleteResponse?> {
+            @Throws(IOException::class)
+            override fun execute(): Response<DeleteResponse?> {
+                return Response.success(deleteResponse)
+            }
+
+            override fun enqueue(callback: Callback<DeleteResponse?>) {}
+
+            override fun isExecuted(): Boolean {
+                return false
+            }
+
+            override fun cancel() {}
+
+            override fun isCanceled(): Boolean {
+                return false
+            }
+
+            override fun clone(): Call<DeleteResponse?> {
+                return this
+            }
+
+            override fun request(): Request? {
+                return null
+            }
+        }
+
+        return call
     }
 
     override fun getAppointments(authorisation: String): Call<AppointmentsResponse?>? {
-        TODO("Not yet implemented")
+        val appointmentList = listOf(Appointment(null
+                                               , "id1"
+                                               , "AppointmentList1"
+                                               , "2021-06-02T14:45:00.000Z"
+                                               , "2021-06-02T14:45:00.000Z"
+                                               , BigDecimal(30)
+                                               , "Appointments list item"))
+        val appointmentsEmbedded = AppointmentsEmbedded(appointmentList as MutableList<Appointment>)
+        val appointmentsResponse = AppointmentsResponse(null, appointmentsEmbedded, BigDecimal(1))
+
+        val call = object : Call<AppointmentsResponse?> {
+            @Throws(IOException::class)
+            override fun execute(): Response<AppointmentsResponse?> {
+                return Response.success(appointmentsResponse)
+            }
+
+            override fun enqueue(callback: Callback<AppointmentsResponse?>) {}
+
+            override fun isExecuted(): Boolean {
+                return false
+            }
+
+            override fun cancel() {}
+
+            override fun isCanceled(): Boolean {
+                return false
+            }
+
+            override fun clone(): Call<AppointmentsResponse?> {
+                return this
+            }
+
+            override fun request(): Request? {
+                return null
+            }
+        }
+
+        return call
     }
 
     override fun getAppointmentsId(@Header(value = "Authorization") authorisation: String, @Path(value = "id") id: String?): Call<Appointment?>? {
@@ -38,17 +103,13 @@ class MockAppointmentsAPI() : AppointmentsAPI{
                 return Response.success(appointment)
             }
 
-            override fun enqueue(callback: Callback<Appointment?>) {
-
-            }
+            override fun enqueue(callback: Callback<Appointment?>) {}
 
             override fun isExecuted(): Boolean {
                 return false
             }
 
-            override fun cancel() {
-
-            }
+            override fun cancel() {}
 
             override fun isCanceled(): Boolean {
                 return false
@@ -67,7 +128,7 @@ class MockAppointmentsAPI() : AppointmentsAPI{
     }
 
     override val authGoogle: Call<Any?>?
-        get() = TODO("Not yet implemented")
+        get() = null
     override val me: Call<User?>?
         get() {
             val roles: MutableList<Any> = mutableListOf<Any>()
@@ -85,17 +146,13 @@ class MockAppointmentsAPI() : AppointmentsAPI{
                     return Response.success(user)
                 }
 
-                override fun enqueue(callback: Callback<User?>) {
-
-                }
+                override fun enqueue(callback: Callback<User?>) {}
 
                 override fun isExecuted(): Boolean {
                     return false
                 }
 
-                override fun cancel() {
-
-                }
+                override fun cancel() {}
 
                 override fun isCanceled(): Boolean {
                     return false
@@ -113,21 +170,154 @@ class MockAppointmentsAPI() : AppointmentsAPI{
             return call
         }
     override val user: Call<Any?>?
-        get() = TODO("Not yet implemented")
+        get() = null
 
     override fun patchAppointmentsId(authorisation: String, id: String?, body: AppointmentBody?): Call<Appointment?>? {
-        TODO("Not yet implemented")
+        val appointment = Appointment(null
+                                    , "id1"
+                                    , "PatchAppointment1"
+                                    , "2021-06-01T14:45:00.000Z"
+                                    , "2021-06-01T14:45:00.000Z"
+                                    , BigDecimal(30)
+                                    , "Same as last time")
+
+        val call = object : Call<Appointment?> {
+            @Throws(IOException::class)
+            override fun execute(): Response<Appointment?> {
+                return Response.success(appointment)
+            }
+
+            override fun enqueue(callback: Callback<Appointment?>) {}
+
+            override fun isExecuted(): Boolean {
+                return false
+            }
+
+            override fun cancel() {}
+
+            override fun isCanceled(): Boolean {
+                return false
+            }
+
+            override fun clone(): Call<Appointment?> {
+                return this
+            }
+
+            override fun request(): Request? {
+                return null
+            }
+        }
+
+        return call
     }
 
     override fun postAppointments(authorisation: String, body: AppointmentBody?): Call<Appointment?>? {
-        TODO("Not yet implemented")
+        val appointment = Appointment(null
+                                    , "id1"
+                                    , "PostAppointment1"
+                                    , "2021-06-01T14:45:00.000Z"
+                                    , "2021-06-01T14:45:00.000Z"
+                                    , BigDecimal(30)
+                                    , "Same as last time")
+
+        val call = object : Call<Appointment?> {
+            @Throws(IOException::class)
+            override fun execute(): Response<Appointment?> {
+                return Response.success(appointment)
+            }
+
+            override fun enqueue(callback: Callback<Appointment?>) {}
+
+            override fun isExecuted(): Boolean {
+                return false
+            }
+
+            override fun cancel() {}
+
+            override fun isCanceled(): Boolean {
+                return false
+            }
+
+            override fun clone(): Call<Appointment?> {
+                return this
+            }
+
+            override fun request(): Request? {
+                return null
+            }
+        }
+
+        return call
     }
 
     override fun postAuthGoogle(body: Token): Call<GoogleResponse> {
-        TODO("Not yet implemented")
+        val googleResponse = GoogleResponse("Google authentication message", "123456789abc", null)
+        val call = object : Call<GoogleResponse> {
+            @Throws(IOException::class)
+            override fun execute(): Response<GoogleResponse?> {
+                return Response.success(googleResponse)
+            }
+
+            override fun enqueue(callback: Callback<GoogleResponse?>) {}
+
+            override fun isExecuted(): Boolean {
+                return false
+            }
+
+            override fun cancel() {}
+
+            override fun isCanceled(): Boolean {
+                return false
+            }
+
+            override fun clone(): Call<GoogleResponse> {
+                return this
+            }
+
+            override fun request(): Request? {
+                return null
+            }
+        }
+
+        return call
     }
 
     override fun putAppointmentsId(authorisation: String, id: String?, body: AppointmentBody?): Call<Appointment?>? {
-        TODO("Not yet implemented")
+        val appointment = Appointment(null
+                                    , "id1"
+                                    , "PutAppointment1"
+                                    , "2021-06-01T14:45:00.000Z"
+                                    , "2021-06-01T14:45:00.000Z"
+                                    , BigDecimal(30)
+                                    , "Same as last time")
+
+        val call = object : Call<Appointment?> {
+            @Throws(IOException::class)
+            override fun execute(): Response<Appointment?> {
+                return Response.success(appointment)
+            }
+
+            override fun enqueue(callback: Callback<Appointment?>) {}
+
+            override fun isExecuted(): Boolean {
+                return false
+            }
+
+            override fun cancel() {}
+
+            override fun isCanceled(): Boolean {
+                return false
+            }
+
+            override fun clone(): Call<Appointment?> {
+                return this
+            }
+
+            override fun request(): Request? {
+                return null
+            }
+        }
+
+        return call
     }
 }

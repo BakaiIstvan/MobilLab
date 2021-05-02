@@ -25,19 +25,11 @@ class MockAppointmentDAO : AppointmentDAO {
                          , "Same as last time")
     }
 
-    override fun insertAppointment(vararg appointment: Appointment) {
-        TODO("Not yet implemented")
-    }
+    override fun insertAppointment(vararg appointment: Appointment) {}
 
-    override fun insertAppointments(appointments: List<Appointment>) {
-        TODO("Not yet implemented")
-    }
+    override fun insertAppointments(appointments: List<Appointment>) {}
 
-    override fun deleteSpecificAppointment(appointment: Appointment) {
-        TODO("Not yet implemented")
-    }
+    override fun deleteSpecificAppointment(appointment: Appointment) { }
 
-    override fun updateSpecificAppointment(vararg appointment: Appointment) {
-        TODO("Not yet implemented")
-    }
+    override fun updateSpecificAppointment(vararg appointment: Appointment) {}
 }
