@@ -1,5 +1,7 @@
 package com.example.appointmentapp.model
 
+import androidx.annotation.NonNull
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
@@ -10,12 +12,12 @@ import java.math.BigDecimal
 @Entity(tableName = "appointment")
 data class Appointment (
     @SerializedName("links")
-    @Ignore
+    @Nullable
     var links: AppointmentLinks? = null,
 
     @SerializedName("id")
     @PrimaryKey
-    var id: String? = null,
+    var id: String,
 
     @SerializedName("title")
     var title: String? = null,
