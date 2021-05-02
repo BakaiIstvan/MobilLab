@@ -42,6 +42,30 @@ class NewAppointmentTest {
         assert(item.value == APPOINTMENT_ID)
     }
 
+    @Test
+    fun testLoadAppointment() {
+        newAppointmentPresenter.loadAppointment(APPOINTMENT_ID)
+
+        val item = argumentCaptor<Appointment>()
+        Mockito.verify(newAppointmentScreen).loadAppointment(item.capture())
+        assert(item.value.id == APPOINTMENT_ID)
+        assert(item.value.title == APPOINTMENT_TITLE)
+        assert(item.value.dateAndTime == APPOINTMENT_START)
+        assert(item.value.endDateAndTime == APPOINTMENT_END)
+        assert(item.value.duration == APPOINTMENT_DURATION)
+        assert(item.value.remarks == APPOINTMENT_DESCRIPTION)
+    }
+
+    @Test
+    fun testModifyAppointment() {
+        val appointmentBody = AppointmentBody(APPOINTMENT_TITLE, APPOINTMENT_START, APPOINTMENT_END, APPOINTMENT_DURATION, APPOINTMENT_DESCRIPTION)
+        newAppointmentPresenter.modifyAppointment(APPOINTMENT_ID, appointmentBody)
+
+        val item = argumentCaptor<String>()
+        Mockito.verify(newAppointmentScreen).showAppointmentModified(item.capture())
+        assert(item.value == APPOINTMENT_ID)
+    }
+
     @After
     fun tearDown() {
         newAppointmentPresenter.detachScreen()
