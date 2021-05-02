@@ -1,4 +1,4 @@
-package hu.bme.aut.weatherdemo.ui.weather
+package com.example.appointmentapp.ui.appointment
 
 import com.example.appointmentapp.model.Appointment
 

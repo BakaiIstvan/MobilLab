@@ -5,10 +5,10 @@ import java.math.BigDecimal
 
 data class AppointmentsResponse (
 
-    @SerializedName("links")
+    @SerializedName("_links")
     var links: UserLinks? = null,
 
-    @SerializedName("embedded")
+    @SerializedName("_embedded")
     var embedded: AppointmentsEmbedded? = null,
 
     @SerializedName("count")
