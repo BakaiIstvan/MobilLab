@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appointmentapp.R
+import com.example.appointmentapp.data.AppDatabase
 import com.example.appointmentapp.injector
 import com.example.appointmentapp.model.Appointment
 import com.example.appointmentapp.ui.about.AboutActivity
@@ -38,7 +39,6 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
 
         findViewById<FloatingActionButton>(R.id.add_btn).setOnClickListener { view ->
             val intent = Intent(this, NewAppointmentActivity::class.java)
-            // intent.putExtra("Appointment_ID", appoitment.appointmenttitle)
             this.startActivity(intent)
         }
 
@@ -49,11 +49,8 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
                 }
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
         }))
     }
 
@@ -70,7 +67,6 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
     override fun onResume() {
         super.onResume()
         appointmentsPresenter.refreshAppointments()
-
     }
 
     override fun showAppointments(appointmentsList: List<Appointment>) {

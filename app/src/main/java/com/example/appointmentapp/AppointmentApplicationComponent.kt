@@ -2,6 +2,7 @@ package com.example.appointmentapp
 
 import com.example.appointmentapp.interactor.InteractorModule
 import com.example.appointmentapp.network.NetworkModule
+import com.example.appointmentapp.data.DatabaseModule
 import com.example.appointmentapp.ui.UIModule
 import com.example.appointmentapp.ui.about.AboutActivity
 import com.example.appointmentapp.ui.appointment.AppointmentDetailsActivity
@@ -11,7 +12,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class])
+@Component(modules = [UIModule::class, DatabaseModule::class, NetworkModule::class, InteractorModule::class])
 interface AppointmentApplicationComponent {
     fun inject(appointmentsActivity: AppointmentsActivity)
     fun inject(appointmentDetailsActivity: AppointmentDetailsActivity)

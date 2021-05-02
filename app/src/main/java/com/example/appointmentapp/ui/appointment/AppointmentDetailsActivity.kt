@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class AppointmentDetailsActivity : AppCompatActivity(), AppointmentScreen {
 
-    private var displayedAppointment: Appointment? = Appointment()
+    private var displayedAppointment: Appointment? = null
 
     @Inject
     lateinit var appointmentPresenter: AppointmentPresenter

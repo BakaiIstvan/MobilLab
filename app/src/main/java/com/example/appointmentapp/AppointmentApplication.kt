@@ -1,6 +1,8 @@
 package com.example.appointmentapp
 
 import android.app.Application
+import android.provider.ContactsContract
+import com.example.appointmentapp.data.DatabaseModule
 import com.example.appointmentapp.ui.UIModule
 
 class AppointmentApplication : Application() {
@@ -8,6 +10,9 @@ class AppointmentApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        injector = DaggerAppointmentApplicationComponent.builder().uIModule(UIModule(this)).build()
+        injector = DaggerAppointmentApplicationComponent.builder()
+            .uIModule(UIModule(this))
+            .databaseModule(DatabaseModule())
+            .build()
     }
 }
