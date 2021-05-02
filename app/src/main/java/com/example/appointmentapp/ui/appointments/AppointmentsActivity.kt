@@ -33,7 +33,7 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
         setContentView(R.layout.activity_appointments)
         setTitle("Appointments")
 
-        appointmentsAdapter = AppointmentsAdapter(this, displayedAppointments)
+        appointmentsAdapter = AppointmentsAdapter(this, appointmentsPresenter, displayedAppointments)
         appointments_rv.adapter = appointmentsAdapter
 
         findViewById<FloatingActionButton>(R.id.add_btn).setOnClickListener { view ->
@@ -76,6 +76,10 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
         displayedAppointments.clear()
         displayedAppointments.addAll(appointmentsList)
         appointmentsAdapter?.notifyDataSetChanged()
+    }
+
+    override fun showAppointmentDeleted(id: String) {
+        Toast.makeText(applicationContext, "Appointment with ID: " + id + " was deleted", Toast.LENGTH_LONG).show()
     }
 
     override fun showNetworkError(errorMsg: String) {

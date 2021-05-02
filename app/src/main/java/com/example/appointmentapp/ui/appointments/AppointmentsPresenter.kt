@@ -1,6 +1,7 @@
 package com.example.appointmentapp.ui.appointments
 
 import com.example.appointmentapp.interactor.appointments.AppointmentsInteractor
+import com.example.appointmentapp.interactor.appointments.event.DeleteAppointmentEvent
 import com.example.appointmentapp.interactor.appointments.event.GetAppointmentsEvent
 import com.example.appointmentapp.model.Appointment
 import com.example.appointmentapp.ui.Presenter
@@ -27,6 +28,14 @@ class AppointmentsPresenter @Inject constructor(private val executor: Executor, 
         }
     }
 
+    fun deleteAppointment(id: String?) {
+        if (id != null) {
+            executor.execute {
+                appointmentsInteractor.deleteAppointment(id)
+            }
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventMainThread(event: GetAppointmentsEvent) {
         if (event.throwable != null) {
@@ -38,6 +47,24 @@ class AppointmentsPresenter @Inject constructor(private val executor: Executor, 
             if (screen != null) {
                 if (event.appointments != null) {
                     screen?.showAppointments(event.appointments as MutableList<Appointment>)
+                }
+
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventMainThread(event: DeleteAppointmentEvent) {
+        if (event.throwable != null) {
+            event.throwable?.printStackTrace()
+            if (screen != null) {
+                screen?.showNetworkError(event.throwable?.message.orEmpty())
+            }
+        } else {
+            if (screen != null) {
+                if (event.id != null) {
+                    screen?.showAppointmentDeleted(event.id!!)
+                    refreshAppointments()
                 }
 
             }
