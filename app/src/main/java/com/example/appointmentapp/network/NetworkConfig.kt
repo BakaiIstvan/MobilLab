@@ -2,5 +2,5 @@ package com.example.appointmentapp.network
 
 object NetworkConfig {
     const val API_ENDPOINT_ADDRESS = "http://10.0.2.2:3000/"
-    const val ACCESS_TOKEN = "ya29.a0AfH6SMBsuPOTILM2m6hmXgoNAS9PDBDYld_2O4YkdtTcfBAm7yFb8zNuWxrZPySa5tG-44DqXehEqNEf5QA8b7YFeEjLbyAw8IdTSUjrWynOwGL8b3jyQEVJocHs82910iklJEiZOg2-hNY40EsDZ9r-5Rx4"
+    const val ACCESS_TOKEN = "ya29.a0AfH6SMCyxzCwv-627wy-dXBsbzJYJQzm0SFCSbcAgnVPmh8udAKwMG0u9_1yAipd2khcHfR1R7g9_6kzaYAcQulnw8fgPLH-3FVfmsOZH236Gkp-O6v1Eurc99Ni0l3YAy4O9Vi5PWb1W-IUVKfvOBKMFG12"
 }

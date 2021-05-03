@@ -92,7 +92,7 @@ class NewAppointmentInteractor @Inject constructor(private var appointmentsApi: 
                 Log.d("Reponse", response.body().toString())
 
                 if (response.code() != 200) {
-                    throw Exception("Result code is not 200")
+                    throw Exception("Result code is not 200, it was " + response.code())
                 }
 
                 event.code = response.code()
