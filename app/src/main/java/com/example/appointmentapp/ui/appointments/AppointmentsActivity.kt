@@ -69,13 +69,15 @@ class AppointmentsActivity : AppCompatActivity(), AppointmentsScreen {
         appointmentsPresenter.refreshAppointments()
     }
 
-    override fun showAppointments(appointmentsList: List<Appointment>) {
+    override fun showAppointments(appointmentsList: List<Appointment>?) {
         displayedAppointments.clear()
-        displayedAppointments.addAll(appointmentsList)
+        if (appointmentsList != null) {
+            displayedAppointments.addAll(appointmentsList)
+        }
         appointmentsAdapter?.notifyDataSetChanged()
     }
 
-    override fun showAppointmentDeleted(id: String) {
+    override fun showAppointmentDeleted(id: String?) {
         Toast.makeText(applicationContext, "Appointment with ID: " + id + " was deleted", Toast.LENGTH_LONG).show()
     }
 

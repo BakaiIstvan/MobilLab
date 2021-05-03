@@ -67,20 +67,22 @@ class NewAppointmentActivity : AppCompatActivity(), NewAppointmentScreen {
         newAppointmentPresenter.loadAppointment(id)
     }
 
-    override fun loadAppointment(appointment: Appointment) {
-        edit_title_card.setText(appointment.title)
-        edit_start_card.setText(appointment.dateAndTime)
-        edit_end_card.setText(appointment.endDateAndTime)
-        edit_duration_card.setText(appointment.duration.toString())
-        edit_description_card.setText(appointment.remarks)
+    override fun loadAppointment(appointment: Appointment?) {
+        if (appointment != null) {
+            edit_title_card.setText(appointment.title)
+            edit_start_card.setText(appointment.dateAndTime)
+            edit_end_card.setText(appointment.endDateAndTime)
+            edit_duration_card.setText(appointment.duration.toString())
+            edit_description_card.setText(appointment.remarks)
+        }
         newAppointment = appointment
     }
 
-    override fun showAppointmentSaved(id: String) {
+    override fun showAppointmentSaved(id: String?) {
         Toast.makeText(applicationContext, "Appointment with ID: " + id + " was saved", Toast.LENGTH_LONG).show()
     }
 
-    override fun showAppointmentModified(id: String) {
+    override fun showAppointmentModified(id: String?) {
         Toast.makeText(applicationContext, "Appointment with ID: " + id + " was modified", Toast.LENGTH_LONG).show()
     }
 

@@ -62,7 +62,7 @@ class AppointmentDetailsActivity : AppCompatActivity(), AppointmentScreen {
         appointmentPresenter.refreshAppointment(intent.getStringExtra(AppointmentsAdapter.APPOINTMENT_ID))
     }
 
-    override fun showAppointmentDetails(appointment: Appointment) {
+    override fun showAppointmentDetails(appointment: Appointment?) {
         displayedAppointment = appointment
         setTitle(displayedAppointment!!.title)
         start_card_value.text = displayedAppointment!!.dateAndTime
