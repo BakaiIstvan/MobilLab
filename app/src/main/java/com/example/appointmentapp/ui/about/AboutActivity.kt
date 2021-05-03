@@ -31,6 +31,7 @@ class AboutActivity : AppCompatActivity(), AboutScreen{
             override fun onTabReselected(tab: TabLayout.Tab) {
                 when (tab.text) {
                     "Appointments" -> navigationToAppointments()
+                    "About" -> throw RuntimeException("This is a crash")
                 }
             }
         }))
